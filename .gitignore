@@ -5,9 +5,11 @@
 
 #Compiled
 *.out
-
+*.o
+build/
 #VS CODE
 .vscode
+
 
 # User-specific files
 *.rsuser

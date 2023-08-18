@@ -24,13 +24,13 @@ struct http_response {
 	char* response;
 } typedef HttpResponse;
 
-HttpResponse* send_http_request(struct http_object* http_object);
+HttpResponse* send_http_request(HttpObject const *http_object);
 
-HttpResponse* send_http_get_request(struct http_object* http_object);
+HttpResponse* send_http_get_request(HttpObject* http_object);
 
-HttpResponse* send_http_post_request(struct http_object* http_object);
+HttpResponse* send_http_post_request(HttpObject* http_object);
 
-HttpResponse* _send_http_string(struct http_object* http_object, char* str);
+HttpResponse* _send_http_string(HttpObject* http_object, char* str);
 
 
 

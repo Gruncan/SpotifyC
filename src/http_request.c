@@ -5,7 +5,7 @@
 
 typedef const char const* char_final;
 
-HttpResponse* send_http_request(HttpObject* http_object) {
+HttpResponse* send_http_request(HttpObject const *http_object) {
 	char_final format = "%s /%s HTTP/1.0\n\rHost:%s\r\n";
 	int http_str_len = snprintf(NULL, 0, format, http_object->method, http_object->path, http_object->host);
 	char* http_str = (char*) malloc(http_str_len);
@@ -20,7 +20,7 @@ HttpResponse* send_http_request(HttpObject* http_object) {
 	if (http_response == NULL) return NULL;
 
 	http_response->response = http_str;
-
+	// Test 
 	return http_response;
 
 }
