@@ -32,7 +32,7 @@
 
 IDIR   = include
 CC     = gcc
-CFLAGS = -I$(IDIR)
+CFLAGS = -I$(IDIR) -lpthread
 
 ODIR   = ../out
 LDIR   = ../lib
@@ -44,10 +44,15 @@ DEPS   = $(patsubst %, $(IDIR)/%, $(_DEPS))
 
 _OBJ   = main.o http_request.o
 OBJ    = $(patsubst %, $(ODIR)/%, $(_OBJ))
+DEBUG ?= 0
 
 
 $(ODIR)/%.o: %.c $(DEPS)
+ifeq ($(DEBUG), 1)
+	$(CC) -c -o $@ $< $(CFLAGS) -D DEBUG
+else
 	$(CC) -c -o $@ $< $(CFLAGS)
+endif
 
 http: $(OBJ)
 	$(CC) -o ../build/$@ $^ $(CFLAGS)
@@ -57,4 +62,5 @@ http: $(OBJ)
 
 clean:
 	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+
 
