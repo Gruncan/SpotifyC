@@ -11,8 +11,11 @@ HttpResponse* send_http_request(HttpObject* http_object) {
 	char* http_str = (char*) malloc(http_str_len);
 	if (http_str == NULL) return NULL;
 
+#ifdef __unix__
+	snprintf(http_str, http_str_len, format, HttpMethod[http_object->method], http_object->path, http_object->host);
+#else
 	sprintf_s(http_str, http_str_len, format, HttpMethod[http_object->method], http_object->path, http_object->host);
-
+#endif
 	HttpResponse* http_response = (HttpResponse*) malloc(sizeof(HttpResponse));
 	if (http_response == NULL) return NULL;
 
