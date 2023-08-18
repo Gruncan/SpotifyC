@@ -1,6 +1,12 @@
 #ifndef HTTP_REQUEST_FILE_H
 #define HTTP_REQUEST_FILE_H
 
+#ifndef DEBUG
+	#define DEBUG 0
+#endif
+
+#define DEB_LOG(str) if(DEBUG) fprintf(stdout, "DEBUG (%d): %s\n", __LINE__, str);
+
 
 enum http_method {
 	GET,
@@ -24,7 +30,7 @@ struct http_response {
 	char* response;
 } typedef HttpResponse;
 
-HttpResponse* send_http_request(HttpObject const *http_object);
+HttpResponse* send_http_request(HttpObject *http_object);
 
 HttpResponse* send_http_get_request(HttpObject* http_object);
 
